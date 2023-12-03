@@ -1,0 +1,20 @@
+version: "3.8"
+name: chat_fe
+services:
+  #API service 
+  api:
+    container_name: chat_fe
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    ports:
+      - ${PORT}:3000
+    volumes:
+      - ./src:/home/node/app/src
+      - chat-fe-node-modules:/home/node/app/node-modules
+    #working_dir: /home/node/app
+    command: npm run dev
+volumes:
+  chat-fe-node-modules:
